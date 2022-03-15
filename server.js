@@ -56,8 +56,31 @@ app.post('/upload',upload.single('upload'),(req,res)=>{
     res.send('upload')
 })
 
+app.post('/upload2',upload.array('upload'),(req,res)=>{
+    console.log(req.files)
+    console.log(req.body)
+    res.send('upload')
+})
+//array : 여러파일전송
+
+app.post('/upload3',upload.fields([{name:'upload1'},{name:'upload2'},{name:'upload3'}]),(req,res)=>{
+    console.log(req.files.upload1)
+    console.log(req.files.upload2)
+    console.log(req.files.upload3)
+    console.log(req.body)
+    res.send('upload')
+})
+
 app.get('/axios',(req,res)=>{
     res.render('axios')
+})
+
+app.get('/array',(req,res)=>{
+    res.render('array')
+})
+
+app.get('/uploads',(req,res)=>{
+    res.render('uploads')
 })
 
 app.listen(3000,()=>{
